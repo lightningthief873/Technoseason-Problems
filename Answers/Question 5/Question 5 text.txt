@@ -1,0 +1,65 @@
+import numpy as np
+
+#Importing Numpy as it is the basic library for working with arrays i.e. Images
+________________________________________
+[ ]
+import cv2 as cv
+from google.colab.patches import cv2_imshow
+
+#Importing CV2 as it is the most basic library for working with images
+________________________________________
+img=cv.imread("1.jpg")
+cv2_imshow(img)
+
+img1=cv.imread("2.jpg")
+cv2_imshow(img1)
+
+#Displaying Both the images to be used... ideally one of the most famous images of all time :)
+
+img3 = cv.resize(img ,(370,600))#for being able to work with the second image
+cv2_imshow(img3)
+
+#Resizing the image so that we can work with the first and second image together. Didnt use the ratio resizer so as to know how many pixels will be in use exactly... which means we know exact nuumbers for cropping the image. #goldenratio
+
+img9=img3[0:300,140:260]
+cv2_imshow(img9)
+
+#The first task done. Cropping the image.
+
+img4 = cv.resize(img1 ,(370,600))#for being able to work with the second image
+cv2_imshow(img4)
+
+#Resized this image to be able to merge with the first resized image.
+________________________________________
+[ ]
+img5 = cv.addWeighted(img3,0.3,img4,0.7,3)
+cv2_imshow(img5)
+
+#2nd task done of blending images.
+________________________________________
+[ ]
+img7=cv.imread("3.jpg")
+cv2_imshow(img7)
+img8 = cv.resize(img7 ,(300,186))
+cv2_imshow(img8)
+
+
+y=int(input("in which direction do you want to rotate?. Press 1 for anticlockwise and -1 for clockwise.:"))
+x=int(input("How many degrees do you want to rotate? : "))
+rows,cols,channels= img8.shape
+cal = cv.getRotationMatrix2D(((cols-1)/2.0,(rows-1)/2.0),x,y)
+img6 = cv.warpAffine(img8,cal,(cols,rows)) 
+cv2_imshow(img6)
+
+
+#Task 3 of rotation is completed. Bonus marks expected.
+
+img11 = cv.addWeighted(img1,1,img1,0,-100)
+cv2_imshow(img11)
+
+
+
+
+Task 4 of reducing image brightness completed.
+
+
